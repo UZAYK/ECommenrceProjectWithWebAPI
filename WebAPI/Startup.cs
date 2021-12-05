@@ -1,6 +1,10 @@
+using DataAccess.Concrete.Contexts;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,8 +29,16 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<Context>(
+                opts => opts.UseSqlServer("Data Source =.\\SQLEXPRESS; Initial Catalog = ECommenrceProjectWithWebAPIDb; Integrated Security = True",
+                options => options.MigrationsAssembly("DataAccess").MigrationsHistoryTable(HistoryRepository.DefaultTableName, "dbo")));
 
             services.AddControllers();
+
+            services.AddTransient<IUserDal, EfUserDal>();
+            //services.AddTransient<IUserService, UserService>();
+           
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
