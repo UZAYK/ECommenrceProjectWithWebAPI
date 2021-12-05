@@ -4,14 +4,16 @@ using DataAccess.Concrete.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20211205191028_FirstNamePropUpdate")]
+    partial class FirstNamePropUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,7 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 12, 5, 22, 11, 43, 546, DateTimeKind.Local).AddTicks(5505));
+                        .HasDefaultValue(new DateTime(2021, 12, 5, 22, 10, 28, 521, DateTimeKind.Local).AddTicks(9308));
 
                     b.Property<int>("CreatedUserId")
                         .HasColumnType("int");
@@ -47,7 +49,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("Email");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FirsName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
@@ -90,11 +92,11 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Address = "Ankara",
-                            CreatedDate = new DateTime(2021, 12, 5, 22, 11, 43, 562, DateTimeKind.Local).AddTicks(720),
+                            CreatedDate = new DateTime(2021, 12, 5, 22, 10, 28, 543, DateTimeKind.Local).AddTicks(4581),
                             CreatedUserId = 1,
                             DateOfBirth = new DateTime(1998, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "uzay@gmail.com",
-                            FirstName = "Uzay KAHRAMAN",
+                            FirsName = "Uzay KAHRAMAN",
                             Gender = true,
                             LastName = "Alkın",
                             Password = "12345",

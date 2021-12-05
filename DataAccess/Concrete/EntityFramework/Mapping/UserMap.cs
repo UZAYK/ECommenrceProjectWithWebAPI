@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework.Mapping
                 .HasMaxLength(50)
                 .IsRequired(); 
             
-            builder.Property(x=>x.FirsName)
+            builder.Property(x=>x.FirstName)
                 .HasColumnName("FirsName")
                 .HasMaxLength(50)
                 .IsRequired(); 
@@ -57,7 +57,7 @@ namespace DataAccess.Concrete.EntityFramework.Mapping
             {
                 Id = 1,
                 UserName = "uzayk",
-                FirsName = "Uzay KAHRAMAN",
+                FirstName = "Uzay KAHRAMAN",
                 LastName = "Alkın",
                 Password = "12345",
                 Email = "uzay@gmail.com",
