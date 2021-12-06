@@ -13,6 +13,12 @@ namespace Bussines.Concrete
     public class UserService : IUserService
     {
         private readonly IUserDal _userdal;
+
+        public UserService(IUserDal userdal)
+        {
+            _userdal = userdal;
+        }
+
         public async Task<IEnumerable<UserDetailDto>> GetListAsync()
         {
             List<UserDetailDto> userDetailDtos = new List<UserDetailDto>();
@@ -37,23 +43,27 @@ namespace Bussines.Concrete
         public async Task<UserDto> GetByIdAsync(int id)
         {
             var user = await _userdal.GetAsync(x => x.Id == id);
-            UserDto userDto = new UserDto()
+            if (user != null)
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Gender = user.Gender,
-                DateOfBirth = user.DateOfBirth,
-                UserName = user.UserName,
-                Address = user.Address,
-                Email = user.Email,
-                Id = user.Id,
-            };
-            return userDto;
+                UserDto userDto = new UserDto()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Gender = user.Gender,
+                    DateOfBirth = user.DateOfBirth,
+                    UserName = user.UserName,
+                    Address = user.Address,
+                    Email = user.Email,
+                    Id = user.Id,
+                };
+                return userDto;
+            }
+            return null;
         }
 
         public async Task<UserDto> AddAsync(UserAddDto userAddDto)
         {
-            var user = new User()
+            User user = new User()
             {
                 FirstName = userAddDto.FirstName,
                 LastName = userAddDto.LastName,
@@ -85,7 +95,7 @@ namespace Bussines.Concrete
 
         public async Task<bool> DeleteAsync(int id)
         {
-           return await _userdal.DeleteAsync(id);
+            return await _userdal.DeleteAsync(id);
         }
 
         public async Task<UserUpdateDto> UpdateAsync(UserUpdateDto userUpdateDto)
