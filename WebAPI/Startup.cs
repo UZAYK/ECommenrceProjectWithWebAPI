@@ -1,3 +1,5 @@
+using Bussines.Abstract;
+using Bussines.Concrete;
 using DataAccess.Concrete.Contexts;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
@@ -36,8 +38,8 @@ namespace WebAPI
             services.AddControllers();
 
             services.AddTransient<IUserDal, EfUserDal>();
-            //services.AddTransient<IUserService, UserService>();
-           
+            services.AddTransient<IUserService, UserService>();
+
 
             services.AddSwaggerGen(c =>
             {
