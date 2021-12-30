@@ -31,7 +31,7 @@
             this.kullaniciAdi = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ekle = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.adi = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
@@ -44,10 +44,10 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.adres = new System.Windows.Forms.Label();
             this.dogumTarihi = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbGender = new System.Windows.Forms.ComboBox();
             this.cinsiyet = new System.Windows.Forms.Label();
-            this.düzenle = new System.Windows.Forms.Button();
-            this.sil = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,17 +73,20 @@
             this.dataGridView1.Location = new System.Drawing.Point(39, 371);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(827, 203);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
-            // ekle
+            // btnAdd
             // 
-            this.ekle.Location = new System.Drawing.Point(560, 277);
-            this.ekle.Name = "ekle";
-            this.ekle.Size = new System.Drawing.Size(76, 57);
-            this.ekle.TabIndex = 3;
-            this.ekle.Text = "Ekle";
-            this.ekle.UseVisualStyleBackColor = true;
+            this.btnAdd.Location = new System.Drawing.Point(560, 277);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(76, 57);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Ekle";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtFirstName
             // 
@@ -181,16 +184,16 @@
             this.dogumTarihi.TabIndex = 16;
             this.dogumTarihi.Text = "Dogum Tarihi:";
             // 
-            // comboBox1
+            // cmbGender
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbGender.FormattingEnabled = true;
+            this.cmbGender.Items.AddRange(new object[] {
             "Erkek",
             "Kadın"});
-            this.comboBox1.Location = new System.Drawing.Point(582, 102);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(248, 23);
-            this.comboBox1.TabIndex = 18;
+            this.cmbGender.Location = new System.Drawing.Point(582, 102);
+            this.cmbGender.Name = "cmbGender";
+            this.cmbGender.Size = new System.Drawing.Size(248, 23);
+            this.cmbGender.TabIndex = 18;
             // 
             // cinsiyet
             // 
@@ -201,33 +204,35 @@
             this.cinsiyet.TabIndex = 19;
             this.cinsiyet.Text = "Cinsiyet:";
             // 
-            // düzenle
+            // btnUpdate
             // 
-            this.düzenle.Location = new System.Drawing.Point(657, 277);
-            this.düzenle.Name = "düzenle";
-            this.düzenle.Size = new System.Drawing.Size(76, 57);
-            this.düzenle.TabIndex = 20;
-            this.düzenle.Text = "Düzenle";
-            this.düzenle.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(657, 277);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(76, 57);
+            this.btnUpdate.TabIndex = 20;
+            this.btnUpdate.Text = "Düzenle";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // sil
+            // btnDelete
             // 
-            this.sil.Location = new System.Drawing.Point(754, 277);
-            this.sil.Name = "sil";
-            this.sil.Size = new System.Drawing.Size(76, 57);
-            this.sil.TabIndex = 21;
-            this.sil.Text = "Sil";
-            this.sil.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(754, 277);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(76, 57);
+            this.btnDelete.TabIndex = 21;
+            this.btnDelete.Text = "Sil";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // kullanici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 604);
-            this.Controls.Add(this.sil);
-            this.Controls.Add(this.düzenle);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.cinsiyet);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbGender);
             this.Controls.Add(this.dogumTarihi);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.adres);
@@ -240,7 +245,7 @@
             this.Controls.Add(this.soyad);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.adi);
-            this.Controls.Add(this.ekle);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.kullaniciAdi);
@@ -258,7 +263,7 @@
         private System.Windows.Forms.Label kullaniciAdi;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button ekle;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label adi;
         private System.Windows.Forms.TextBox txtLastName;
@@ -273,7 +278,8 @@
         private System.Windows.Forms.Label dogumTarihi;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label cinsiyet;
-        private System.Windows.Forms.Button düzenle;
-        private System.Windows.Forms.Button sil;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.ComboBox cmbGender;
     }
 }
